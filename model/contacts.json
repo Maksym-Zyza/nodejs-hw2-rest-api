@@ -1,62 +1,82 @@
-[
-  {
-    "id": 1,
-    "name": "Allen Raymond",
-    "email": "nulla.ante@vestibul.co.uk",
-    "phone": "(992) 914-3792"
-  },
-  {
-    "id": 2,
-    "name": "Chaim Lewis",
-    "email": "dui.in@egetlacus.ca",
-    "phone": "(294) 840-6685"
-  },
-  {
-    "id": 3,
-    "name": "Kennedy Lane",
-    "email": "mattis.Cras@nonenimMauris.net",
-    "phone": "(542) 451-7038"
-  },
-  {
-    "id": 4,
-    "name": "Wylie Pope",
-    "email": "est@utquamvel.net",
-    "phone": "(692) 802-2949"
-  },
-  {
-    "id": 5,
-    "name": "Cyrus Jackson",
-    "email": "nibh@semsempererat.com",
-    "phone": "(501) 472-5218"
-  },
-  {
-    "id": 6,
-    "name": "Abbot Franks",
-    "email": "scelerisque@magnis.org",
-    "phone": "(186) 568-3720"
-  },
-  {
-    "id": 7,
-    "name": "Reuben Henry",
-    "email": "pharetra.ut@dictum.co.uk",
-    "phone": "(715) 598-5792"
-  },
-  {
-    "id": 8,
-    "name": "Simon Morton",
-    "email": "dui.Fusce.diam@Donec.com",
-    "phone": "(233) 738-2360"
-  },
-  {
-    "id": 9,
-    "name": "Thomas Lucas",
-    "email": "nec@Nulla.com",
-    "phone": "(704) 398-7993"
-  },
-  {
-    "id": 10,
-    "name": "Alec Howard",
-    "email": "Donec.elementum@scelerisquescelerisquedui.net",
-    "phone": "(748) 206-2688"
-  }
-]
+{
+  "contacts": [
+    {
+      "id": "098b228f-b087-4682-b40c-cc2e2ff2027d",
+      "name": "Kasio",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "1234567890123"
+    },
+    {
+      "id": "a6576224-88ca-4b3f-bda7-d550a803179f",
+      "name": "Polli",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "3214567890123"
+    },
+    {
+      "id": "8f7457a5-06c6-4982-bbf6-41f8e759e156",
+      "name": "Robin",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "1214567890123"
+    },
+    {
+      "id": "8f58c2ca-91b9-4d64-9623-7baaf3b180aa",
+      "name": "Mango",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "4214567890123"
+    },
+    {
+      "id": "c987d779-6c5a-4721-94d9-06372b7cec04",
+      "name": "Tommi",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "5214567890123"
+    },
+    {
+      "id": "60c5cb93-049b-4f92-86f9-2274f1ca612b",
+      "name": "Fred",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "5214567890123"
+    },
+    {
+      "id": "0eecf39b-584c-4ffe-9bea-a5de293f18ea",
+      "name": "Dominik",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "8214567890123"
+    },
+    {
+      "id": "c79ec2d2-d6e7-4c2a-af80-c15ddb04bfed",
+      "name": "sadkjahskh",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "8214567890123"
+    },
+    {
+      "id": "5f588953-69b9-44fe-8743-19070ac1b793",
+      "name": "fsdfsdf",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "8214567890123"
+    },
+    {
+      "id": "bfe97c95-3270-4890-a7e4-7abb9f922b39",
+      "name": "Polli",
+      "email": "wqwqwqwq@magnis.com",
+      "phone": "9214567890123"
+    },
+    {
+      "id": "bfe97c95-3270-4890-a7e4-7abb9f922b39",
+      "name": "qdasdasdasd",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "8214567890123"
+    },
+    {
+      "id": "bfe97c95-3270-4890-a7e4-7abb9f922b39",
+      "name": "qdasdassddasd",
+      "email": "fdgdfgdfew@magnis.com",
+      "phone": "8214567890123"
+    },
+    {
+      "id": "bfe97c95-3270-4890-a7e4-7abb9f922b39",
+      "name": "dsjalkdja",
+      "email": "fjlaasdla@magnis.com",
+      "phone": "3214567890123"
+    }
+  ]
+}
