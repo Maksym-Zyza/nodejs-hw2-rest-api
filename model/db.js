@@ -1,9 +1,20 @@
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
+const { MongoClient } = require("mongodb");
+require("dotenv").config();
+const uriDb = process.env.URI_DB;
 
-const adapter = new FileSync("./model/contacts.json");
-const db = low(adapter);
+// Підключення БД
+const db = MongoClient.connect(uriDb, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  poolSize: 5, // кількість можливих одночасних підключень
+});
 
-db.defaults({ contacts: [] }).write();
+// Переривання виконання серверного скрипта
+process.on("SIGINT", async () => {
+  const client = await db;
+  client.close();
+  console.log("Disocnnect MongoDB");
+  process.exit();
+});
 
 module.exports = db;
