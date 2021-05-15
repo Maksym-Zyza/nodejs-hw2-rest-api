@@ -1,52 +1,35 @@
-const db = require("./db");
-const { ObjectId } = require("mongodb");
+const Contact = require("./schemas/contact");
 
-// Обгортка, щоб брати колекцію
-const getCollection = async (db, name) => {
-  const client = await db;
-  const collection = await client.db().collection(name);
-  return collection;
-};
-
+// GET
 const listContacts = async () => {
-  const collection = await getCollection(db, "contacts");
-  const results = collection.find({}).toArray(); // Отримуємо "курсор", .toArray() - перетворюємо в массив
+  const results = await Contact.find({});
   return results;
 };
 
+// GET BY ID
 const getContactById = async (id) => {
-  const collection = await getCollection(db, "contacts");
-  const [result] = await collection.find({ _id: new ObjectId(id) }).toArray(); // ObjectId(id) - преобразование строки в обьект для MongpDb
-  console.log(result._id.getTimestamp());
+  const result = await Contact.findOne({ _id: id });
   return result;
 };
 
+// DELETE
 const removeContact = async (id) => {
-  const collection = await getCollection(db, "contacts");
-  const { value: result } = await collection.findOneAndDelete({
-    _id: new ObjectId(id),
-  });
+  const result = await Contact.findByIdAndRemove({ _id: id });
   return result;
 };
 
+// POST
 const addContact = async (body) => {
-  const collection = await getCollection(db, "contacts");
-  const record = { ...body };
-  const {
-    ops: [result], // деструктиризуємо ops
-  } = await collection.insertOne(record);
+  const result = await Contact.create(body);
   return result;
 };
 
+// UPDATE
 const updateContact = async (id, body) => {
-  const collection = await getCollection(db, "contacts");
-
-  const { value: result } = await collection.findOneAndUpdate(
-    {
-      _id: new ObjectId(id),
-    },
-    { $set: body }, //$set - модифікатор
-    { returnOriginal: false } // получение текущего значения
+  const result = await Contact.findOneAndUpdate(
+    { _id: id },
+    { ...body },
+    { new: true }
   );
   return result;
 };
