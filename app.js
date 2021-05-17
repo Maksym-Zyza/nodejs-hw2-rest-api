@@ -16,7 +16,9 @@ app.use(express.json());
 app.use("/api/contacts", contactsRouter);
 
 app.use((req, res) => {
-  res.status(404).json({ status: "error", code: 404, message: "Not found" });
+  res
+    .status(404)
+    .json({ status: "error", code: 404, message: "Not found URL" });
 });
 
 app.use((err, req, res, next) => {
