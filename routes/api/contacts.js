@@ -11,7 +11,7 @@ const {
 // GET
 router.get("/", async (req, res, next) => {
   try {
-    const contacts = await Contacts.listContacts();
+    const contacts = await Contacts.getAll();
     return res.json({ status: "success", code: 200, data: { contacts } });
   } catch (error) {
     next(error);
@@ -21,7 +21,7 @@ router.get("/", async (req, res, next) => {
 // GET BY ID
 router.get("/:contactId", async (req, res, next) => {
   try {
-    const contact = await Contacts.getContactById(req.params.contactId);
+    const contact = await Contacts.get(req.params.contactId);
     if (contact) {
       return res.json({ status: "success", code: 200, data: { contact } });
     }
@@ -36,7 +36,7 @@ router.get("/:contactId", async (req, res, next) => {
 // POST
 router.post("/", validateCreateContact, async (req, res, next) => {
   try {
-    const contact = await Contacts.addContact(req.body);
+    const contact = await Contacts.add(req.body);
     return res
       .status(201)
       .json({ status: "success", code: 201, data: { contact } });
@@ -51,7 +51,7 @@ router.post("/", validateCreateContact, async (req, res, next) => {
 // DELETE
 router.delete("/:contactId", async (req, res, next) => {
   try {
-    const contact = await Contacts.removeContact(req.params.contactId);
+    const contact = await Contacts.remove(req.params.contactId);
     if (contact) {
       return res.json({ status: "success", code: 200, data: { contact } });
     }
@@ -66,10 +66,7 @@ router.delete("/:contactId", async (req, res, next) => {
 // PUT
 router.put("/:contactId", validateUpdateContact, async (req, res, next) => {
   try {
-    const contact = await Contacts.updateContact(
-      req.params.contactId,
-      req.body
-    );
+    const contact = await Contacts.update(req.params.contactId, req.body);
     if (contact) {
       return res.json({ status: "success", code: 200, data: { contact } });
     }
@@ -88,7 +85,7 @@ router.patch(
   async (req, res, next) => {
     try {
       const contact = req.body.hasOwnProperty("favorite")
-        ? await Contacts.updateContact(req.params.contactId, req.body)
+        ? await Contacts.update(req.params.contactId, req.body)
         : { message: "missing field favorite" };
 
       if (contact) {
