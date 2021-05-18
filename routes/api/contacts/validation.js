@@ -1,5 +1,6 @@
 const Joi = require("joi");
 
+// Валідація контактів для маршрутів
 // POST
 const schemaCreateContact = Joi.object({
   name: Joi.string()

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, SchemaTypes } = mongoose;
 
+// Опис SCHEMA для функцій route/contarts
 const contactSchema = new Schema(
   {
     name: {
@@ -18,6 +19,10 @@ const contactSchema = new Schema(
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
     },
   },
   {

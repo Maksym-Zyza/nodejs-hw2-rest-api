@@ -1,5 +1,6 @@
 const Contact = require("./schemas/contact");
 
+// Функції для routes contasts
 // GET
 const getAll = async () => {
   const results = await Contact.find({});
@@ -7,7 +8,7 @@ const getAll = async () => {
 };
 
 // GET BY ID
-const get = async (id) => {
+const getById = async (id) => {
   const result = await Contact.findOne({ _id: id });
   return result;
 };
@@ -36,7 +37,7 @@ const update = async (id, body) => {
 
 module.exports = {
   getAll,
-  get,
+  getById,
   remove,
   add,
   update,
