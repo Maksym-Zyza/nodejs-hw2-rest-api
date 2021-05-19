@@ -1,6 +1,6 @@
 const Contact = require("./schemas/contact");
 
-// Функції для routes contasts
+// Функції для controllers/contasts
 // GET
 const getAll = async () => {
   const results = await Contact.find({});

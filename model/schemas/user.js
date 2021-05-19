@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const { Schema } = mongoose;
-const { Subsc } = require("../../helpers/constants");
+const { Subsc } = require("../../helpers/const");
 const SALT_FACTOR = 6;
 
-// Опис SCHEMA для функцій route/users
+// Опис SCHEMA для функцій model/users
 const userSchema = new Schema(
   {
     password: {
@@ -48,7 +48,7 @@ userSchema.pre("save", async function (next) {
 });
 
 // Порівняння паролів
-userSchema.method.validPassword = async function (password) {
+userSchema.methods.validPassword = async function (password) {
   return await bcrypt.compare(String(password), this.password);
 };
 

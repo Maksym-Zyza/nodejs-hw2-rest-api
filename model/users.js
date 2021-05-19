@@ -1,6 +1,6 @@
 const User = require("./schemas/user");
 
-// Функції для routes users
+// Функції для controllers users
 // GET by ID
 const findById = async (id) => {
   return await User.findOne({ _id: id });
@@ -14,7 +14,7 @@ const findByEmail = async (email) => {
 // CREATE
 const create = async (options) => {
   const user = new User(options);
-  return await user.seve();
+  return await user.save();
 };
 
 // UPDETE TOKEN

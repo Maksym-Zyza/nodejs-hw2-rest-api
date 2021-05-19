@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, SchemaTypes } = mongoose;
 
-// Опис SCHEMA для функцій route/contarts
+// Опис SCHEMA для функцій model/contarts
 const contactSchema = new Schema(
   {
     name: {
