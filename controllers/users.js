@@ -46,7 +46,7 @@ const login = async (req, res, next) => {
     }
     // Віддаємо токен
     const payload = { id: user.id };
-    const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: "2h" });
+    const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: "5h" });
     await Users.updateToken(user.id, token);
     return res.status(HttpCode.OK).json({
       status: "success",
@@ -60,6 +60,13 @@ const login = async (req, res, next) => {
   }
 };
 
-const logout = async (req, res, next) => {};
+const logout = async (req, res, next) => {
+  try {
+    await Users.updateToken(req.user.id, null);
+    return res.status(HttpCode.NO_CONTENT).json({});
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = { reg, login, logout };
