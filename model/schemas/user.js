@@ -7,6 +7,11 @@ const SALT_FACTOR = 6;
 // Опис SCHEMA для функцій model/users
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      minLength: 2,
+      default: "Guest",
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -37,7 +42,7 @@ const userSchema = new Schema(
   }
 );
 
-// Хук "pre" - викликається перед записом в БД, "post" - після запису в БД
+// Hook "pre" - викликається перед записом в БД, "post" - після запису в БД
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     // якщо пароль змінився
