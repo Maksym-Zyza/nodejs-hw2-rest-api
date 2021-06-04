@@ -1,8 +1,23 @@
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
+const { promisify } = require("util");
+
 require("dotenv").config();
 const Users = require("../model/users");
 const { HttpCode } = require("../helpers/const");
+
+// const UploadAvatar = require("../services/upload-avatars-local"); // LOCAL
+const UploadAvatar = require("../services/upload-avatars-cloud"); //CLOUD
+
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+// const AVATARS_OF_USERS = process.env.AVATARS_OF_USERS; // LOCAL
+
+// Настройка CLOUDINARY
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 // Контроллери (логіка роботи) для маршрутів
 // REGISTRATION / SIGNUP
@@ -17,11 +32,11 @@ const reg = async (req, res, next) => {
       });
     }
     const newUser = await Users.create(req.body);
-    const { id, name, email, subscription } = newUser;
+    const { id, name, email, subscription, avatar } = newUser;
     return res.status(HttpCode.CREATED).json({
       status: "success",
       code: HttpCode.CREATED,
-      ResponseBody: { user: { id, name, email, subscription } },
+      ResponseBody: { user: { id, name, email, subscription, avatar } },
     });
   } catch (e) {
     next(e);
@@ -116,4 +131,36 @@ const updateSub = async (req, res, next) => {
   }
 };
 
-module.exports = { reg, login, logout, currentUser, updateSub };
+// AVATARS - роздача картиное з сервера
+const avatars = async (req, res, next) => {
+  try {
+    const id = req.user.id;
+    // LOCAL
+    // const uploads = new UploadAvatar(AVATARS_OF_USERS);
+    // const avatarUrl = await uploads.saveAvatarToStatic({
+    //   idUser: id,
+    //   pathFile: req.file.path,
+    //   name: req.file.filename,
+    //   oldFile: req.user.avatar,
+    // });
+
+    // CLOUD
+    const uploadCloud = promisify(cloudinary.uploader.upload);
+    const uploads = new UploadAvatar(uploadCloud);
+    const { userIdImg, avatarUrl } = await uploads.saveAvatarToCloud(
+      req.file.path,
+      req.user.userIdImg
+    );
+    await Users.updateAvatar(id, avatarUrl, userIdImg);
+
+    return res.json({
+      status: "success",
+      code: HttpCode.OK,
+      data: { avatarUrl },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { reg, login, logout, currentUser, updateSub, avatars };
