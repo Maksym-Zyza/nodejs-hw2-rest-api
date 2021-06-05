@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
 const { Schema } = mongoose;
 const { Subsc } = require("../../helpers/const");
 const SALT_FACTOR = 6;
@@ -32,6 +33,16 @@ const userSchema = new Schema(
       default: Subsc.STARTER,
     },
     token: {
+      type: String,
+      default: null,
+    },
+    avatar: {
+      type: String,
+      default: function () {
+        return gravatar.url(this.email, { s: 250 }, true);
+      },
+    },
+    userIdImg: {
       type: String,
       default: null,
     },

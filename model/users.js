@@ -32,6 +32,16 @@ const updateUserSub = async (id, subscription) => {
   return await User.updateOne({ _id: id }, { subscription });
 };
 
+// UPDETE Avatar LOCAL
+// const updateAvatar = async (id, avatar) => {
+//   return await User.updateOne({ _id: id }, { avatar });
+// };
+
+// UPDETE Avatar CLOUD
+const updateAvatar = async (id, avatar, userIdImg = null) => {
+  return await User.updateOne({ _id: id }, { avatar, userIdImg });
+};
+
 module.exports = {
   findById,
   findByEmail,
@@ -39,4 +49,5 @@ module.exports = {
   updateToken,
   findByToken,
   updateUserSub,
+  updateAvatar,
 };
