@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const cloudinary = require("cloudinary");
+const cloudinary = require('cloudinary').v2;
 const { promisify } = require("util");
 
 require("dotenv").config();
