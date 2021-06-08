@@ -20,7 +20,9 @@ const upload = multer({
   limits: { fileSize: 2000000 }, // 2Mb
   fileFilter: (req, file, cb) => {
     if (!file.mimetype.includes("image")) {
-      cb(null, false);
+      const error = new Error('Unable to download file, select .jpg or .png file type')
+      error.status = 400
+      cb(error);
       return;
     }
     cb(null, true);
