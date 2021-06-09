@@ -32,7 +32,8 @@ const reg = async (req, res, next) => {
       });
     }
     const newUser = await Users.create(req.body);
-    const { id, name, email, subscription, avatar } = newUser;
+    const { id, name, email, subscription, avatar, verifyToken } = newUser;
+    // TODO: send email
     return res.status(HttpCode.CREATED).json({
       status: "success",
       code: HttpCode.CREATED,

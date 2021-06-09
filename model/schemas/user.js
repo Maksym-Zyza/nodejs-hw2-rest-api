@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const { Schema, model } = require("mongoose");
 const gravatar = require("gravatar");
-const { Schema } = mongoose;
+const bcrypt = require("bcryptjs");
+const { nanoid } = require("nanoid");
 const { Subsc } = require("../../helpers/const");
 const SALT_FACTOR = 6;
 
@@ -46,6 +46,15 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    veryfy: {
+      type: Boolean,
+      default: false,
+    },
+    veryfyToken: {
+      type: String,
+      required: true,
+      default: nanoid(),
+    },
   },
   {
     versionKey: false,
@@ -68,6 +77,6 @@ userSchema.methods.validPassword = async function (password) {
   return await bcrypt.compare(String(password), this.password);
 };
 
-const User = mongoose.model("user", userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
