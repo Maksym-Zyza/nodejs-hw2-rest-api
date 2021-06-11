@@ -46,11 +46,11 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    veryfy: {
+    verify: {
       type: Boolean,
       default: false,
     },
-    veryfyToken: {
+    verifyToken: {
       type: String,
       required: true,
       default: nanoid(),
