@@ -6,7 +6,8 @@ const { validateCreateUser } = require("./validetionUser");
 const upload = require("../../../helpers/upload");
 
 // Маршрути для app
-// POST
+router.get("/verify/:token", ctrl.verify);
+router.post("/verify", ctrl.repeatEmailVerify);
 router.post("/register", validateCreateUser, ctrl.reg);
 router.post("/login", ctrl.login); // get token
 router.post("/logout", guard, ctrl.logout);

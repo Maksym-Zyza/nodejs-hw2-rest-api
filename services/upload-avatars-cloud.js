@@ -1,5 +1,6 @@
 const fs = require("fs/promises");
 
+// Upload для controllers
 class Upload {
   constructor(uploadCloud) {
     this.uploadCloud = uploadCloud;
@@ -9,20 +10,20 @@ class Upload {
     const { public_id: publicId, secure_url: avatar } = await this.uploadCloud(
       pathFile,
       {
-        public_id: userIdImg?.replace("Photo/", ""),
-        folder: "Photo",
-        transformation: { width: 250, crop: "pad" },
-      }
-    );
-    await this.deleteTemporyFile(pathFile);
-    return { userIdImg: publicId, avatarUrl: avatar };
+        public_id: userIdImg?.replace('Photo/', ''),
+        folder: 'Photo',
+        transformation: { width: 250, crop: 'pad' },
+      },
+    )
+    await this.deleteTemporyFile(pathFile)
+    return { userIdImg: publicId, avatarUrl: avatar }
   }
 
   async deleteTemporyFile(pathFile) {
     try {
-      await fs.unlink(pathFile);
+      await fs.unlink(pathFile)
     } catch (error) {
-      console.error(error.message);
+      console.error(error.message)
     }
   }
 }
